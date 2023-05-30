@@ -6,16 +6,11 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Change to commit to develop </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <img
+          src="https://storage.googleapis.com/chydlx/codepen/random-gif-generator/giphy-logo.gif"
+          className="App-logo"
+          alt="logo"
+        />
       </header>
     </div>
   );
