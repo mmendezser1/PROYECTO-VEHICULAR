@@ -11,6 +11,7 @@ function App() {
           className="App-logo"
           alt="logo"
         />
+        <p>hello</p>
       </header>
     </div>
   );
