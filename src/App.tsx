@@ -1,19 +1,19 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
+import Gif from "./Interfaces/Gif";
 
-interface Gif {
-  src: string;
-  alt: string;
-}
+const URL_API = "https://pokeapi.co/api/v2/pokemon?limit=15";
+
+export const ComponentGif = (myGif: Gif) => {
+  return <img src={myGif.src} alt={myGif.alt} />;
+};
 
 function App() {
   const [gifs, setGifs] = useState<Gif[] | undefined>(undefined);
 
   useEffect(() => {
     const loadGift = async () => {
-      const response = await fetch(
-        "https://pokeapi.co/api/v2/pokemon?limit=15"
-      );
+      const response = await fetch(URL_API);
 
       const res = await response.json();
       setGifs(res);
@@ -28,7 +28,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         {gifs.map((gif) => {
-          return <img src={gif.src} alt={gif.alt} />;
+          return <ComponentGif myGif={gif} />;
         })}
       </header>
     </div>
