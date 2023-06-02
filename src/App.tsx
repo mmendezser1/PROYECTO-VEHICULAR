@@ -2,7 +2,7 @@ import "./App.css";
 import React, { useEffect, useState } from "react";
 
 function App() {
-  const [gift, setGift] = useState();
+  const [gifs, setGifs] = useState();
 
   useEffect(() => {
     const loadGift = async () => {
@@ -11,16 +11,19 @@ function App() {
       );
 
       const res = await response.json();
-      setGift(undefined);
+      console.log("res", res);
+      setGifs(res);
     };
 
     loadGift();
   }, []);
-
+  if (gifs === undefined) {
+    return <p>loading...</p>;
+  }
   return (
     <div className="App">
       <header className="App-header">
-        <p> </p>
+        <img src={gifs.src} alt={gifs.alt} />
       </header>
     </div>
   );

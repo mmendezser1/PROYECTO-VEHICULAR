@@ -4,14 +4,18 @@ import App from "../App";
 import { server } from "../mocks/server";
 import { rest } from "msw";
 
-test("renders learn react link", () => {
+test("renders learn react link", async () => {
+  render(<App />);
   server.use(
     rest.get("https://pokeapi.co/api/v2/pokemon?limit=15", (req, res, ctx) => {
-      return res(ctx.json({ gif: "/images/rubik_cube.gif" }));
+      return res(
+        ctx.json({ src: "/images/rubik_cube.gif", alt: "cube_rubik_gif" })
+      );
     })
   );
 
-  render(<App />);
-  const linkElement = screen.getByText("cube_rubik_gif");
-  expect(linkElement).toBeInTheDocument();
+  const cuboRubik = await screen.findByAltText("cube_rubik_gif");
+  expect(cuboRubik).toBeVisible();
+  const cuboRubik2 = await screen.findByAltText("cube_rubi2k_gif");
+  expect(cuboRubik2).toBeVisible();
 });
