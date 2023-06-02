@@ -1,17 +1,26 @@
-import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import React, { useEffect, useState } from "react";
 
 function App() {
+  const [gift, setGift] = useState();
+
+  useEffect(() => {
+    const loadGift = async () => {
+      const response = await fetch(
+        "https://pokeapi.co/api/v2/pokemon?limit=15"
+      );
+
+      const res = await response.json();
+      setGift(undefined);
+    };
+
+    loadGift();
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img
-          src="https://storage.googleapis.com/chydlx/codepen/random-gif-generator/giphy-logo.gif"
-          className="App-logo"
-          alt="logo"
-        />
-        <p>hello</p>
+        <p> </p>
       </header>
     </div>
   );

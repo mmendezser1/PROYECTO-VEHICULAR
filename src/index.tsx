@@ -8,6 +8,9 @@ import reportWebVitals from "./reportWebVitals";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
+const { worker } = require("./mocks/browser");
+worker.start();
 root.render(
   <React.StrictMode>
     <App />
