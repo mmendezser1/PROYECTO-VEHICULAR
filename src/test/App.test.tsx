@@ -9,13 +9,11 @@ test("renders learn react link", async () => {
   server.use(
     rest.get("https://pokeapi.co/api/v2/pokemon?limit=15", (req, res, ctx) => {
       return res(
-        ctx.json({ src: "/images/rubik_cube.gif", alt: "cube_rubik_gif" })
+        ctx.json([{ src: "/images/rubik_cube.gif", alt: "cube_rubik_gif" }])
       );
     })
   );
 
   const cuboRubik = await screen.findByAltText("cube_rubik_gif");
   expect(cuboRubik).toBeVisible();
-  const cuboRubik2 = await screen.findByAltText("cube_rubi2k_gif");
-  expect(cuboRubik2).toBeVisible();
 });

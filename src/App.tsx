@@ -1,8 +1,13 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
 
+interface Gif {
+  src: string;
+  alt: string;
+}
+
 function App() {
-  const [gifs, setGifs] = useState();
+  const [gifs, setGifs] = useState<Gif[] | undefined>(undefined);
 
   useEffect(() => {
     const loadGift = async () => {
@@ -11,7 +16,6 @@ function App() {
       );
 
       const res = await response.json();
-      console.log("res", res);
       setGifs(res);
     };
 
@@ -23,7 +27,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={gifs.src} alt={gifs.alt} />
+        {gifs.map((gif) => {
+          return <img src={gif.src} alt={gif.alt} />;
+        })}
       </header>
     </div>
   );

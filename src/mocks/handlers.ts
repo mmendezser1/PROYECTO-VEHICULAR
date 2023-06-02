@@ -6,10 +6,12 @@ export const handlers = [
     console.log("Entro a getGifts");
     return res(
       ctx.status(200),
-      ctx.json({
-        src: "/images/chris.gif",
-        alt: "chris_gif",
-      })
+      ctx.json([
+        {
+          src: "/images/chris.gif",
+          alt: "chris_gif",
+        },
+      ])
     );
   }),
 ];
