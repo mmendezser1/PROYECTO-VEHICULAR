@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import Gif from "./Interfaces/Gif";
+import Gif from "./Models/Gif";
 
 const URL_API = "https://pokeapi.co/api/v2/pokemon?limit=15";
 
@@ -28,7 +28,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         {gifs.map((gif) => {
-          return <ComponentGif myGif={gif} />;
+          return <ComponentGif {...gif} />;
         })}
       </header>
     </div>
