@@ -1,5 +1,10 @@
 import Gif from "../../Models/Gif";
 import "./Gif.css";
 export const ComponentGif = (myGif: Gif) => {
-  return <img src={myGif.src} alt={myGif.alt} />;
+  return (
+    <div>
+      <img data-testid="gif" src={myGif.src} alt={myGif.alt} />{" "}
+      <p data-testid="gif">ghello</p>
+    </div>
+  );
 };
