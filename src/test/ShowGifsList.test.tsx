@@ -3,14 +3,15 @@ import { render, screen } from "@testing-library/react";
 import App from "../App";
 import { server } from "../mocks/server";
 import { rest } from "msw";
+import Gif from "../Models/Gif";
 
-test("renders learn react link", async () => {
+it("Check that exist one gif", async () => {
   render(<App />);
   server.use(
     rest.get("https://pokeapi.co/api/v2/pokemon?limit=15", (req, res, ctx) => {
-      return res(
-        ctx.json([{ src: "/images/rubik_cube.gif", alt: "cube_rubik_gif" }])
-      );
+      let gif = new Gif("/images/rubik_cube.gif", "cube_rubik_gif");
+
+      return res(ctx.json([gif]));
     })
   );
 
