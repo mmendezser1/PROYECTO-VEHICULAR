@@ -10,6 +10,7 @@ Las funciones deben ser constantes
 },
 
 Todos los test irán en la carpeta de Test.
+Todos los componentes tendrán una carpeta donde irá el propio componente junto con su respectivo archivo de estilos
 
 Propiedades:
 

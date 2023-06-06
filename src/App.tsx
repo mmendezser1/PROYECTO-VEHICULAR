@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
 import Gif from "./Models/Gif";
-import { ComponentGif } from "./Components/Gif";
+import { ComponentGif } from "./Components/Gif/Gif";
 
 const URL_API = "https://pokeapi.co/api/v2/pokemon?limit=15";
 
