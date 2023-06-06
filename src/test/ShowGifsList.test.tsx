@@ -18,3 +18,17 @@ it("Check that exist one gif", async () => {
   const cuboRubik = await screen.findByAltText("cube_rubik_gif");
   expect(cuboRubik).toBeVisible();
 });
+
+it("Check that not exist any gif", async () => {
+  render(<App />);
+  server.use(
+    rest.get("https://pokeapi.co/api/v2/pokemon?limit=15", (req, res, ctx) => {
+      return res(ctx.json([]));
+    })
+  );
+
+  const cuboRubik = await screen.findByAltText(
+    "No hay ningún gif disponible..."
+  );
+  expect(cuboRubik).toBeVisible();
+});
