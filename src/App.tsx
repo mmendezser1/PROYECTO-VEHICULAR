@@ -1,12 +1,9 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
 import Gif from "./Models/Gif";
+import { ComponentGif } from "./Components/Gif";
 
 const URL_API = "https://pokeapi.co/api/v2/pokemon?limit=15";
-
-export const ComponentGif = (myGif: Gif) => {
-  return <img src={myGif.src} alt={myGif.alt} />;
-};
 
 function App() {
   const [gifs, setGifs] = useState<Gif[] | undefined>(undefined);
