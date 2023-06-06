@@ -21,6 +21,9 @@ function App() {
   if (gifs === undefined) {
     return <p>loading...</p>;
   }
+  if (gifs.length === 0) {
+    return <p>No hay ningún gif disponible...</p>;
+  }
   return (
     <div className="App">
       <header className="App-header">

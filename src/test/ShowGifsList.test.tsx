@@ -27,8 +27,6 @@ it("Check that not exist any gif", async () => {
     })
   );
 
-  const cuboRubik = await screen.findByAltText(
-    "No hay ningún gif disponible..."
-  );
+  const cuboRubik = await screen.findByText("No hay ningún gif disponible...");
   expect(cuboRubik).toBeVisible();
 });
