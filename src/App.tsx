@@ -27,9 +27,11 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {gifs.map((gif) => {
-          return <ComponentGif {...gif} />;
-        })}
+        <div className="listgifs">
+          {gifs.map((gif) => {
+            return <ComponentGif {...gif} />;
+          })}
+        </div>
       </header>
     </div>
   );

@@ -1,0 +1,26 @@
+:root {
+  --height-gif: 200px;
+  --width-gif: 200px;
+
+  --color-blue: #4158d0;
+  --color-pink: #c850c0;
+  --color-yellow: #ffcc70;
+  --color-gray: #999999;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-purple: #9933ff;
+  --color-ligth-red: #ff6666;
+  --color-ligth-blue: #00ccff;
+  --color-ligth-green: #00ff99;
+  --color-ligth-yellow: #fff9aa;
+
+  /* fonts */
+  --font-size-small: 12.64px;
+  --font-size-base: 16px;
+  --font-size-h4: 18px;
+  --font-size-h3: 25.63px;
+  --font-size-h2: 36.41px;
+  --font-size-h1: 41.83px;
+
+  --border-radius-small: 5px;
+}
