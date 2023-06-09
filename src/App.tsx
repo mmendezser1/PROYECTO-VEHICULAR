@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import Gif from "./Models/Gif";
+import { Gif } from "./Models/Gif";
 import { ComponentGif } from "./Components/Gif/Gif";
 
 const URL_API = "https://pokeapi.co/api/v2/pokemon?limit=15";
@@ -30,7 +30,7 @@ function App() {
       <header className="App-header">
         {gifs
           .sort((a: Gif, b: Gif) =>
-            a.numberOfLikes < b.numberOfLikes ? 1 : -1
+            (a.numberOfLikes ?? 0) < (b.numberOfLikes ?? 0) ? 1 : -1
           )
           .map((gif) => {
             return <ComponentGif {...gif} />;

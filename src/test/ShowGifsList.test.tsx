@@ -3,16 +3,17 @@ import { render, screen } from "@testing-library/react";
 import App from "../App";
 import { server } from "../mocks/server";
 import { rest } from "msw";
-import Gif from "../Models/Gif";
-import { log } from "console";
+import { Gif } from "../Models/Gif";
 
 it("Check that exist one gif", async () => {
   render(<App />);
   server.use(
     rest.get("https://pokeapi.co/api/v2/pokemon?limit=15", (req, res, ctx) => {
-      let gif = new Gif("/images/rubik_cube.gif", "cube_rubik_gif");
-
-      return res(ctx.json([gif]));
+      const gifRubik: Gif = {
+        src: "/images/rubik_cube.gif",
+        alt: "cube_rubik_gif",
+      };
+      return res(ctx.json([gifRubik]));
     })
   );
 
@@ -37,9 +38,21 @@ it("Check the gifs list is ordered", async () => {
 
   server.use(
     rest.get("https://pokeapi.co/api/v2/pokemon?limit=15", (req, res, ctx) => {
-      const gifChris = new Gif("/images/chris.gif", "gif chris", 3);
-      const gifRubik = new Gif("/images/rubik_cube.gif", "gif rubik", 2);
-      const gifHomer = new Gif("/images/homer.gif", "gif homer", 1);
+      const gifChris: Gif = {
+        src: "/images/chris.gif",
+        alt: "gif chris",
+        numberOfLikes: 3,
+      };
+      const gifRubik: Gif = {
+        src: "/images/rubik_cube.gif",
+        alt: "gif rubik",
+        numberOfLikes: 2,
+      };
+      const gifHomer: Gif = {
+        src: "/images/homer.gif",
+        alt: "gif homer",
+        numberOfLikes: 1,
+      };
       return res(ctx.json([gifHomer, gifChris, gifRubik]));
     })
   );
