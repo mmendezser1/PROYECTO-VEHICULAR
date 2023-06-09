@@ -2,7 +2,7 @@ import { rest } from "msw";
 import { Gif } from "../Models/Gif";
 
 export const handlers = [
-  rest.get("https://pokeapi.co/api/v2/pokemon?limit=15", (req, res, ctx) => {
+  rest.get("https://pokeapi.co/api/v2/pokemon", (req, res, ctx) => {
     console.log("Entro a getGifts");
     const gifChris: Gif = {
       src: "/images/chris.gif",

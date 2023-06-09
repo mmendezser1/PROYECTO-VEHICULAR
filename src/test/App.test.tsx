@@ -6,9 +6,8 @@ import { rest } from "msw";
 import { Gif } from "../Models/Gif";
 
 it("Check that exist one gif", async () => {
-  render(<App />);
   server.use(
-    rest.get("https://pokeapi.co/api/v2/pokemon?limit=15", (req, res, ctx) => {
+    rest.get("https://pokeapi.co/api/v2/pokemon", (req, res, ctx) => {
       const gifRubik: Gif = {
         src: "/images/rubik_cube.gif",
         alt: "cube_rubik_gif",
@@ -17,17 +16,20 @@ it("Check that exist one gif", async () => {
     })
   );
 
+  render(<App />);
+
   const cuboRubik = await screen.findByAltText("cube_rubik_gif");
   expect(cuboRubik).toBeVisible();
 });
 
 it("Check that not exist any gif", async () => {
-  render(<App />);
   server.use(
-    rest.get("https://pokeapi.co/api/v2/pokemon?limit=15", (req, res, ctx) => {
+    rest.get("https://pokeapi.co/api/v2/pokemon", (req, res, ctx) => {
       return res(ctx.json([]));
     })
   );
+
+  render(<App />);
 
   const cuboRubik = await screen.findByText("No hay ningún gif disponible...");
   expect(cuboRubik).toBeVisible();
