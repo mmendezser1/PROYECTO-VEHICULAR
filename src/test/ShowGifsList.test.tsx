@@ -34,18 +34,23 @@ it("Check that not exist any gif", async () => {
 
 it("Check the gifs list is ordered", async () => {
   render(<App />);
-  const gifChris = new Gif("/images/chris.gif", "gif chris", 3);
-  const gifRubik = new Gif("/images/rubik_cube.gif", "gif rubik", 2);
-  const gifHomer = new Gif("/images/homer.gif", "gif homer", 1);
 
   server.use(
     rest.get("https://pokeapi.co/api/v2/pokemon?limit=15", (req, res, ctx) => {
+      const gifChris = new Gif("/images/chris.gif", "gif chris", 3);
+      const gifRubik = new Gif("/images/rubik_cube.gif", "gif rubik", 2);
+      const gifHomer = new Gif("/images/homer.gif", "gif homer", 1);
       return res(ctx.json([gifHomer, gifChris, gifRubik]));
     })
   );
 
   const arrayGifs = await screen.findAllByTestId("gif");
+
   const chrisGif = await screen.findByAltText("gif chris");
+  const rubikGif = await screen.findByAltText("gif rubik");
+  const homerGif = await screen.findByAltText("gif homer");
 
   expect(arrayGifs[0]).toEqual(chrisGif);
+  expect(arrayGifs[1]).toEqual(rubikGif);
+  expect(arrayGifs[2]).toEqual(homerGif);
 });

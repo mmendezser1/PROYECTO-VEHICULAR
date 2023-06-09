@@ -24,12 +24,17 @@ function App() {
   if (gifs.length === 0) {
     return <p>No hay ningún gif disponible...</p>;
   }
+
   return (
     <div className="App">
       <header className="App-header">
-        {gifs.map((gif) => {
-          return <ComponentGif {...gif} />;
-        })}
+        {gifs
+          .sort((a: Gif, b: Gif) =>
+            a.numberOfLikes < b.numberOfLikes ? 1 : -1
+          )
+          .map((gif) => {
+            return <ComponentGif {...gif} />;
+          })}
       </header>
     </div>
   );

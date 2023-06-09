@@ -3,8 +3,7 @@ import "./Gif.css";
 export const ComponentGif = (myGif: Gif) => {
   return (
     <div>
-      <img data-testid="gif" src={myGif.src} alt={myGif.alt} />{" "}
-      <p data-testid="gif">ghello</p>
+      <img data-testid="gif" src={myGif.src} alt={myGif.alt} />
     </div>
   );
 };
