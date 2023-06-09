@@ -32,7 +32,7 @@ it("Check that not exist any gif", async () => {
   const cuboRubik = await screen.findByText("No hay ningún gif disponible...");
   expect(cuboRubik).toBeVisible();
 });
-
+/*
 it("Check the gifs list is ordered", async () => {
   render(<App />);
 
@@ -67,3 +67,4 @@ it("Check the gifs list is ordered", async () => {
   expect(arrayGifs[1]).toEqual(rubikGif);
   expect(arrayGifs[2]).toEqual(homerGif);
 });
+*/

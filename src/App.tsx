@@ -28,13 +28,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {gifs
-          .sort((a: Gif, b: Gif) =>
-            (a.numberOfLikes ?? 0) < (b.numberOfLikes ?? 0) ? 1 : -1
-          )
-          .map((gif) => {
-            return <ComponentGif {...gif} />;
-          })}
+        {gifs.map((gif) => {
+          return <ComponentGif {...gif} />;
+        })}
       </header>
     </div>
   );
