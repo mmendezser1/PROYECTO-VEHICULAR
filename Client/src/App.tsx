@@ -26,13 +26,16 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <div className="listgifs">
-          {gifs.map((gif) => {
-            return <ComponentGif {...gif} />;
-          })}
-        </div>
-      </header>
+      <div className="home">
+        <section className="container-gifs">
+          <p>los princiales Gifs</p>
+          <div className="listgifs">
+            {gifs.map((gif) => {
+              return <ComponentGif {...gif} />;
+            })}
+          </div>
+        </section>
+      </div>
     </div>
   );
 }

@@ -1,12 +1,55 @@
-.listgifs {
-  display: grid;
-  grid-template-columns: 200px 200px 200px 200px 200px;
-  border: 3px solid red;
-  grid-gap: 12px;
-  /*grid-auto-flow: column;*/
-  margin: 0 15rem;
+.App {
+  background-color: var(--color-ligth-blue);
+}
+.home {
+  max-width: 1132px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
 }
 
-.App-header {
-  /*padding: 0 15rem;*/
+.listgifs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /*grid-auto-flow: column;*/
+}
+
+.marginTop10 {
+  margin-bottom: 1rem;
+}
+.marginRight10 {
+  margin-right: 1rem;
+}
+.marginLeft10 {
+  margin-left: 1rem;
+}
+.marginBottom10 {
+  margin-bottom: 1rem;
+}
+
+.marginTop20 {
+  margin-bottom: 2rem;
+}
+.marginRight20 {
+  margin-right: 2rem;
+}
+.marginLeft20 {
+  margin-left: 2rem;
+}
+.marginBottom20 {
+  margin-bottom: 2rem;
+}
+
+.marginTop30 {
+  margin-bottom: 3rem;
+}
+.marginRight30 {
+  margin-right: 3rem;
+}
+.marginLeft30 {
+  margin-left: 3rem;
+}
+.marginBottom30 {
+  margin-bottom: 3rem;
 }
