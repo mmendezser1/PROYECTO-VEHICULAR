@@ -1,4 +1,4 @@
 interface DatabaseSchema {
-  memes: Meme[];
+  gifs: Gif[];
 }
-interface Meme {}
+interface Gif {}

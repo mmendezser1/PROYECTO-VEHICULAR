@@ -8,10 +8,10 @@ const db = low(adapter);
 
 const app = createApp(db);
 
-describe("GET /api/memes", function () {
+describe("GET /api/gifs", function () {
   it("responds with code 200", function (done) {
     request(app)
-      .get("/api/memes")
+      .get("/api/gifs")
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
       .expect(200, done);
