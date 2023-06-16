@@ -1,4 +1,3 @@
-interface DatabaseSchema {
+export type DatabaseSchemaGif = {
   gifs: Gif[];
-}
-interface Gif {}
+};

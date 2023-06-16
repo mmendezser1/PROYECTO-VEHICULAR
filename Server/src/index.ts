@@ -3,8 +3,9 @@ import { createApp } from "./app";
 import http, { Server } from "http";
 import low from "lowdb";
 import Memory from "lowdb/adapters/Memory";
+import { DatabaseSchemaGif } from "./DatabaseSchema";
 
-const adapter = new FileSync<DatabaseSchema>("./data/db.json");
+const adapter = new FileSync<DatabaseSchemaGif>("./data/db.json");
 const db = low(adapter);
 
 const app = createApp(db);
