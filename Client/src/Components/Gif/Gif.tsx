@@ -3,7 +3,7 @@ import "./Gif.css";
 export const ComponentGif = (myGif: Gif) => {
   return (
     <img
-      className="marginBottom20"
+      className="itemGif"
       data-testid="gif"
       src={myGif.src}
       alt={myGif.alt}

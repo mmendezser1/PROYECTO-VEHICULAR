@@ -29,7 +29,7 @@ function App() {
       <div className="home">
         <section className="container-gifs">
           <p>los princiales Gifs</p>
-          <div className="listgifs">
+          <div className="list-gifs">
             {gifs.map((gif) => {
               return <ComponentGif {...gif} />;
             })}

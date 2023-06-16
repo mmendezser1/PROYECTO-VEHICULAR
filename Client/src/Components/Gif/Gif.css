@@ -1,4 +1,5 @@
-img {
+.itemGif {
+  margin-bottom: 20px;
   height: var(--height-gif);
   width: var(--width-gif);
   border-radius: var(--border-radius-small);
