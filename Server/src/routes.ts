@@ -7,8 +7,15 @@ export const createRoutes = (db: LowdbSync<DatabaseSchemaGif>) => {
 
   routes.get("/gifs", function (req, res) {
     const gifs = db.get("gifs").take(50).value();
-    //funcion mapeo
-    res.json({ response: gifs });
+    res.json({
+      response: gifs.map((myGif) => {
+        return {
+          name: myGif.title,
+          src: myGif.images.small.url,
+          numberOfLikes: 5,
+        };
+      }),
+    });
   });
   return routes;
 };
