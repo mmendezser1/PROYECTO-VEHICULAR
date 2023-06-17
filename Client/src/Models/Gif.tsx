@@ -3,3 +3,5 @@ export type Gif = {
   alt: string;
   numberOfLikes?: number;
 };
+
+//TODO Evitar archivos con el mismo nombre

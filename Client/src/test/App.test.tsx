@@ -8,6 +8,7 @@ import { Gif } from "../Models/Gif";
 it("Check that exist one gif", async () => {
   server.use(
     rest.get("https://pokeapi.co/api/v2/pokemon", (req, res, ctx) => {
+      // TODO Entender la inicialización de este test
       const gifRubik: Gif = {
         src: "/images/rubik_cube.gif",
         alt: "cube_rubik_gif",

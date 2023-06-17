@@ -22,5 +22,7 @@
   --font-size-h2: 36.41px;
   --font-size-h1: 41.83px;
 
-  --border-radius-small: 5px;
+  --border-radius-small: 15px;
+
+  --space--large: 48px;
 }

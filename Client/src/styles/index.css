@@ -1,12 +1,54 @@
-.listgifs {
-  display: grid;
-  grid-template-columns: 200px 200px 200px 200px 200px;
-  border: 3px solid red;
-  grid-gap: 12px;
-  /*grid-auto-flow: column;*/
-  margin: 0 15rem;
+@font-face {
+  font-family: openSans;
+  src: url("../../public/fonts/OpenSans-VariableFont_wdth\,wght.ttf");
 }
 
-.App-header {
-  /*padding: 0 15rem;*/
+html {
+  background: rgb(153, 51, 255);
+  background: linear-gradient(
+    45deg,
+    rgba(153, 51, 255, 1) 0%,
+    rgba(255, 249, 170, 1) 100%
+  );
+  height: 100%;
+}
+
+.home {
+  max-width: 1132px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+
+  @media (min-width: 1132px) {
+    padding: 0 var(--space--large);
+  }
+}
+
+.header {
+  display: flex;
+  font-size: var(--font-size-h1);
+  align-items: center;
+  font-family: "openSans";
+  font-weight: 800;
+}
+
+.image-header {
+  width: 55.88px;
+  height: 61.75px;
+  margin-right: 14.12px;
+}
+
+.browser {
+  background-color: aliceblue;
+  width: 1132px;
+  height: 70px;
+}
+.container-gifs {
+  width: 100%;
+}
+.list-gifs {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  justify-content: space-between;
 }
