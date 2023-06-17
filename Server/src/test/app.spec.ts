@@ -1,16 +1,25 @@
 import request from "supertest";
 import { createApp } from "../app";
+import { Express } from "express";
 import low from "lowdb";
+import lowdb from "lowdb";
+import Memory from "lowdb/adapters/Memory";
 import FileSync from "lowdb/adapters/FileSync";
 import { DatabaseSchemaGif } from "../DatabaseSchema";
 import { GifDTO } from "../GifDTO";
+import dbData from "../../data/db.json";
 
 const adapter = new FileSync<DatabaseSchemaGif>("./data/db.json");
 const db = low(adapter);
 
-const app = createApp(db);
-
 describe("GET /api/gifs", function () {
+  let app: Express;
+  beforeEach(() => {
+    const adapter = new Memory<DatabaseSchemaGif>("");
+    const db = lowdb(adapter);
+    db.defaults(dbData).write();
+    app = createApp(db);
+  });
   it("responds with code 200", function (done) {
     request(app)
       .get("/api/gifs")
