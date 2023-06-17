@@ -10,3 +10,5 @@ export const ComponentGif = (myGif: Gif) => {
     />
   );
 };
+
+//TODO Evitar archivos con el mismo nombre

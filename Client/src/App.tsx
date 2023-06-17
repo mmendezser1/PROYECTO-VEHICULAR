@@ -17,6 +17,7 @@ function App() {
 
     loadGift();
   }, []);
+
   if (gifs === undefined) {
     return <p>loading...</p>;
   }
@@ -31,7 +32,7 @@ function App() {
           <p>los princiales Gifs</p>
           <div className="list-gifs">
             {gifs.map((gif) => {
-              return <ComponentGif {...gif} />;
+              return <ComponentGif {...gif} />; //TODO Para que están los ...
             })}
           </div>
         </section>
