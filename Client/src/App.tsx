@@ -34,12 +34,11 @@ function App() {
         </section>
         <section className="browser"></section>
         <section className="container-gifs-header"></section>
-        <section className="container-gifs"></section>
         <section className="container-gifs">
           <p>los princiales Gifs</p>
           <div className="list-gifs">
             {gifs.map((gif) => {
-              return <ComponentGif {...gif} />; //TODO Para que están los ...
+              return <ComponentGif {...gif} />;
             })}
           </div>
         </section>

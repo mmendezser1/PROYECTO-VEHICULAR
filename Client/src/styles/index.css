@@ -3,16 +3,17 @@
   src: url("../../public/fonts/OpenSans-VariableFont_wdth\,wght.ttf");
 }
 
-body {
-  display: flex;
-  justify-content: center;
-}
 html {
-  margin: 10px;
-  padding: 0;
-  background-color: lightpink;
+  background: rgb(153, 51, 255);
+  background: linear-gradient(
+    45deg,
+    rgba(153, 51, 255, 1) 0%,
+    rgba(255, 249, 170, 1) 100%
+  );
+  height: 100%;
 }
-/* .home {
+
+.home {
   max-width: 1132px;
   width: 100%;
   height: 100%;
@@ -21,17 +22,14 @@ html {
   @media (min-width: 1132px) {
     padding: 0 var(--space--large);
   }
-} */
+}
 
 .header {
   display: flex;
   font-size: var(--font-size-h1);
   align-items: center;
   font-family: "openSans";
-  width: 10px;
   font-weight: 800;
-  margin-left: 154px;
-  margin-bottom: 66.25px;
 }
 
 .image-header {
@@ -46,13 +44,11 @@ html {
   height: 70px;
 }
 .container-gifs {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 100%;
 }
 .list-gifs {
   display: flex;
-  max-width: 900px;
-  justify-content: center;
+  flex-wrap: wrap;
   flex-grow: 1;
+  justify-content: space-between;
 }
