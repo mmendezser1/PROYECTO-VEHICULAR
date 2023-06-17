@@ -34,4 +34,16 @@ describe("GET /api/gifs", function () {
         done();
       });
   });
+
+  it("Check my api returns 20 gifs", function (done) {
+    request(app)
+      .get("/api/gifs")
+      .set("Accept", "application/json")
+      .expect("Content-Type", /json/)
+      .then((res) => {
+        const myGifs = res.body.response;
+        expect(myGifs).toHaveLength(20);
+        done();
+      });
+  });
 });

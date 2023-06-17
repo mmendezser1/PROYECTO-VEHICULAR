@@ -1,0 +1,14 @@
+{
+  "gifs": [
+    {
+      "name": " myGif.title",
+      "src": "myGif.images.small.url",
+      "numberOfLikes": 1
+    },
+    {
+      "name": " myGif.title2",
+      "src": "myGif.images.small.url2",
+      "numberOfLikes": 3
+    }
+  ]
+}
