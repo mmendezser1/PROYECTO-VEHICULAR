@@ -1,6 +1,6 @@
 :root {
   --height-gif: 200px;
-  --width-gif: 100%;
+  --width-gif: 200px;
 
   --color-blue: #4158d0;
   --color-pink: #c850c0;
@@ -22,7 +22,7 @@
   --font-size-h2: 36.41px;
   --font-size-h1: 41.83px;
 
-  --border-radius-small: 5px;
+  --border-radius-small: 15px;
 
   --space--large: 48px;
 }

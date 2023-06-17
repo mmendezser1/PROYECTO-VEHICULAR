@@ -28,6 +28,13 @@ function App() {
   return (
     <div className="App">
       <div className="home">
+        <section className="header">
+          <img className="image-header" src="/images/Logo.svg" alt="Logo" />
+          GUIFAFFINITY
+        </section>
+        <section className="browser"></section>
+        <section className="container-gifs-header"></section>
+        <section className="container-gifs"></section>
         <section className="container-gifs">
           <p>los princiales Gifs</p>
           <div className="list-gifs">
