@@ -32,7 +32,16 @@ function App() {
           <img className="image-header" src="/images/Logo.svg" alt="Logo" />
           GUIFAFFINITY
         </section>
-        <section className="browser"></section>
+        <section className="browserBox">
+          <input
+            className="browserInput"
+            type="text"
+            placeholder="¿Que quieres buscar? ¡Encuentralo!"
+          />
+          <div className="browserImage">
+            <img src="/images/lupa.svg" alt="lupa" />
+          </div>
+        </section>
         <section className="container-gifs-header"></section>
         <section className="container-gifs">
           <p>los princiales Gifs</p>
