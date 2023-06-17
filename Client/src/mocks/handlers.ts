@@ -22,19 +22,14 @@ export const handlers = [
       gifHomer,
       gifRubik,
       gifChris,
+      gifHomer,
       gifChris,
+      gifHomer,
       gifChris,
+      gifHomer,
+      gifHomer,
       gifChris,
-
-      gifChris,
-
-      gifChris,
-
-      gifChris,
-
-      gifChris,
-
-      gifChris,
+      gifHomer,
     ];
 
     return res(ctx.status(200), ctx.json(arrayGifs));
