@@ -7,13 +7,12 @@ import { Gif } from "../Models/Gif";
 
 it("Check that exist one gif", async () => {
   server.use(
-    rest.get("https://pokeapi.co/api/v2/pokemon", (req, res, ctx) => {
-      // TODO Entender la inicialización de este test
+    rest.get("http://localhost:3005/api/gifs", (req, res, ctx) => {
       const gifRubik: Gif = {
         src: "/images/rubik_cube.gif",
         alt: "cube_rubik_gif",
       };
-      return res(ctx.json([gifRubik]));
+      return res(ctx.json({ response: [gifRubik] }));
     })
   );
 
@@ -25,8 +24,8 @@ it("Check that exist one gif", async () => {
 
 it("Check that not exist any gif", async () => {
   server.use(
-    rest.get("https://pokeapi.co/api/v2/pokemon", (req, res, ctx) => {
-      return res(ctx.json([]));
+    rest.get("http://localhost:3005/api/gifs", (req, res, ctx) => {
+      return res(ctx.json({ response: [] }));
     })
   );
 

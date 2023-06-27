@@ -47,6 +47,9 @@ html {
   display: flex;
   justify-content: space-between;
 }
+.title-h1 {
+  font-size: 30px;
+}
 .browserInput {
   width: calc(100% - 70px);
   background-color: transparent;
@@ -54,6 +57,8 @@ html {
   padding: 16px 24px;
 }
 .browserImage {
+  border: unset;
+  cursor: pointer;
   width: 70px;
   height: 70px;
   background: linear-gradient(
@@ -72,6 +77,7 @@ html {
   width: 100%;
 }
 .list-gifs {
+  list-style: none;
   display: flex;
   flex-wrap: wrap;
   flex-grow: 1;

@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(
 );
 
 const { worker } = require("./mocks/browser");
-worker.start();
+//worker.start();
 root.render(
   <React.StrictMode>
     <App />

@@ -2,7 +2,7 @@ import { rest } from "msw";
 import { Gif } from "../Models/Gif";
 
 export const handlers = [
-  rest.get("https://pokeapi.co/api/v2/pokemon", (req, res, ctx) => {
+  rest.get("http://localhost:3005/api/gifs", (req, res, ctx) => {
     const gifChris: Gif = {
       src: "/images/chris.gif",
       alt: "gif chris",
@@ -31,7 +31,6 @@ export const handlers = [
       gifChris,
       gifHomer,
     ];
-
     return res(ctx.status(200), ctx.json(arrayGifs));
   }),
 ];

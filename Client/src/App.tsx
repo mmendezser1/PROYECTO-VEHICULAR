@@ -2,22 +2,22 @@ import React, { useEffect, useState } from "react";
 import { Gif } from "./Models/Gif";
 import { ComponentGif } from "./Components/Gif/Gif";
 
-const URL_API = "https://pokeapi.co/api/v2/pokemon?limit=15";
-
+const URL_API = "http://localhost:3005/api/gifs";
 function App() {
   const [gifs, setGifs] = useState<Gif[] | undefined>(undefined);
 
   useEffect(() => {
     const loadGift = async () => {
-      const response = await fetch(URL_API);
-
+      const response = await fetch(URL_API, {
+        method: "GET",
+      });
       const res = await response.json();
-      setGifs(res);
+
+      setGifs(res.response);
     };
 
     loadGift();
   }, []);
-
   if (gifs === undefined) {
     return <p>loading...</p>;
   }
@@ -28,28 +28,28 @@ function App() {
   return (
     <div className="App">
       <div className="home">
-        <section className="header">
+        <header className="header">
           <img className="image-header" src="/images/Logo.svg" alt="Logo" />
-          GUIFAFFINITY
-        </section>
+          <h1 className="title-h1">GUIFAFFINITY</h1>
+        </header>
         <section className="browserBox">
           <input
             className="browserInput"
             type="text"
             placeholder="¿Que quieres buscar? ¡Encuentralo!"
           />
-          <div className="browserImage">
+          <button className="browserImage">
             <img src="/images/lupa.svg" alt="lupa" />
-          </div>
+          </button>
         </section>
         <section className="container-gifs-header"></section>
         <section className="container-gifs">
-          <p>los princiales Gifs</p>
-          <div className="list-gifs">
+          <h2>los princiales Gifs</h2>
+          <ol className="list-gifs">
             {gifs.map((gif) => {
               return <ComponentGif {...gif} />;
             })}
-          </div>
+          </ol>
         </section>
       </div>
     </div>

@@ -6,6 +6,8 @@ import { DatabaseSchemaGif } from "./DatabaseSchema";
 
 export const createApp = (db: LowdbSync<DatabaseSchemaGif>) => {
   const app: Express = express();
+  var cors = require("cors");
+  app.use(cors());
 
   app.use(morgan("dev"));
   app.use(express.json());
