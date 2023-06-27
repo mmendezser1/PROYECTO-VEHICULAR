@@ -19,6 +19,30 @@ export const createRoutes = (db: LowdbSync<DatabaseSchemaGif>) => {
       }),
     });
   });
+
+  routes.post("/gifs/find", function (req, res) {
+    const nombreGif = req.body.gif;
+    const nombreGifToValidate = nombreGif.replaceAll(" ", "");
+
+    const STRING_LENGTH_REQUIREMENT = nombreGifToValidate.length <= 4;
+    const STIRNG_HAS_SPECIAL_CHARACTER =
+      hasSpecialCharacter(nombreGifToValidate);
+
+    if (STRING_LENGTH_REQUIREMENT || STIRNG_HAS_SPECIAL_CHARACTER) {
+      res.json({ response: "string NO valido" });
+    }
+
+    nombreGif;
+    // Buscart tal cual
+    // Dividir y buscar por palabras
+    // gatos que bailan breackdance
+    // Gatos
+    // bailan
+    // breakdance
+
+    res.json({ response: "string valido" });
+  });
+
   return routes;
 };
 
@@ -29,4 +53,10 @@ export const orderGifs = (myGifs: Array<GifDTO>) => {
     return 0;
   });
   return myGifs;
+};
+
+const hasSpecialCharacter = (text: String) => {
+  const characterCorrected = text.replace(/[^a-zA-Z0-9]/g, "");
+  console.log(text + " -- " + characterCorrected);
+  return characterCorrected === text ? false : true;
 };
