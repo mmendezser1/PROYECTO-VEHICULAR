@@ -50,4 +50,13 @@ describe("Testing search gif function", () => {
 
     expect(result).toHaveLength(0);
   });
+  it("Test searching by word and get many results", () => {
+    const buildGifShrek1 = gifBuilder().withTitle("Shrek 1").build();
+    const buildGifShrek2 = gifBuilder().withTitle("Shrek 2").build();
+    const buildGifShrek3 = gifBuilder().withTitle("Shrek 3").build();
+    const arrayShrekGifs = [buildGifShrek1, buildGifShrek2, buildGifShrek3];
+    db.set("gifs", arrayShrekGifs).write();
+    const result = buscadorGifs("shrek", db);
+    expect(result).toHaveLength(3);
+  });
 });

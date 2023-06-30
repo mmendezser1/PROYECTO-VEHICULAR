@@ -27,9 +27,10 @@ export const createRoutes = (db: LowdbSync<DatabaseSchemaGif>) => {
 
     if (STRING_LENGTH_REQUIREMENT || STIRNG_HAS_SPECIAL_CHARACTER) {
       res.status(400);
-      res.send(
-        "String no válido para búsqueda. No debe contener caracteres especiales y más de 4 caracteres"
-      );
+      res.json({
+        error_message:
+          "String no válido para búsqueda. No debe contener caracteres especiales y más de 4 caracteres",
+      });
     }
 
     let gifsBuscados = buscadorGifs(nombreGif, db);

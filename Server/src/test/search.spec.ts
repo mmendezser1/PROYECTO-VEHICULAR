@@ -57,4 +57,58 @@ describe("GET /api/gifs", function () {
         done();
       });
   });
+
+  it("Search is NO valid, has special caracters", function (done) {
+    const apiContent = { gif: "ª^%?¿º" };
+    request(app)
+      .post("/api/gifs/find")
+      .set("Accept", "application/json")
+      .send(apiContent)
+      .then((res) => {
+        expect(res.statusCode).toBe(400);
+        done();
+      });
+  });
+
+  it("Search found Gifs, searching in lowercase", function (done) {
+    const apiContent = { gif: "perros juagando a futbol " };
+    request(app)
+      .post("/api/gifs/find")
+      .set("Accept", "application/json")
+      .send(apiContent)
+      .expect("Content-Type", /json/)
+      .then((res) => {
+        const response = res.body.response;
+        expect(Array.isArray(response)).toBe(true);
+        done();
+      });
+  });
+
+  it("Search found Gifs, searching in lowercase and upper case", function (done) {
+    const apiContent = { gif: "PeRrItOs " };
+    request(app)
+      .post("/api/gifs/find")
+      .set("Accept", "application/json")
+      .send(apiContent)
+      .expect("Content-Type", /json/)
+      .then((res) => {
+        const response = res.body.response;
+        expect(Array.isArray(response)).toBe(true);
+        done();
+      });
+  });
+
+  it("Search found Gifs, searching upper case", function (done) {
+    const apiContent = { gif: "PERRITOS ROJOS " };
+    request(app)
+      .post("/api/gifs/find")
+      .set("Accept", "application/json")
+      .send(apiContent)
+      .expect("Content-Type", /json/)
+      .then((res) => {
+        const response = res.body.response;
+        expect(Array.isArray(response)).toBe(true);
+        done();
+      });
+  });
 });
