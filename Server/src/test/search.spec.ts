@@ -34,4 +34,19 @@ describe("GET /api/gifs", function () {
         done();
       });
   });
+
+  it("Search is valid, has more than 5 characters", function (done) {
+    const apiContent = { gif: "porqueestarompiendo" };
+    request(app)
+      .post("/api/gifs/find")
+      .set("Accept", "application/json")
+      .send(apiContent)
+      .expect("Content-Type", /json/)
+      .then((res) => {
+        const response = res.body.response;
+        console.log(response);
+        expect(Array.isArray(response)).toBe(true);
+        done();
+      });
+  });
 });
