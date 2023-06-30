@@ -6,7 +6,6 @@ import lowdb from "lowdb";
 import Memory from "lowdb/adapters/Memory";
 import FileSync from "lowdb/adapters/FileSync";
 import { DatabaseSchemaGif } from "../DatabaseSchema";
-import { GifDTO } from "../GifDTO";
 import dbData from "../../data/db.json";
 
 const adapter = new FileSync<DatabaseSchemaGif>("./data/db.json");
@@ -27,10 +26,8 @@ describe("GET /api/gifs", function () {
       .post("/api/gifs/find")
       .set("Accept", "application/json")
       .send(apiContent)
-      .expect("Content-Type", /json/)
       .then((res) => {
-        const response = res.body.response;
-        expect(response).toBe("string NO valido");
+        expect(res.statusCode).toBe(400);
         done();
       });
   });
@@ -45,6 +42,18 @@ describe("GET /api/gifs", function () {
       .then((res) => {
         const response = res.body.response;
         expect(Array.isArray(response)).toBe(true);
+        done();
+      });
+  });
+
+  it("Search is NO valid, has less than 5 characters", function (done) {
+    const apiContent = { gif: "lol" };
+    request(app)
+      .post("/api/gifs/find")
+      .set("Accept", "application/json")
+      .send(apiContent)
+      .then((res) => {
+        expect(res.statusCode).toBe(400);
         done();
       });
   });

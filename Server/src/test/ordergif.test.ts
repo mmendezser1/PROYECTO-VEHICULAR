@@ -1,7 +1,7 @@
-import { orderGifs } from "../routes";
 import emptyDb from "../../data/fixtures/emptydb.json";
 import twoElementsSameLikes from "../../data/fixtures/twoElementsSameLikes.json";
 import twoElementsDifferentLikes from "../../data/fixtures/twoElementsDifferentLikes.json";
+import { orderGifs } from "./orderGifs";
 
 describe("Testing gif function order", () => {
   it("Test if DB is empty", () => {

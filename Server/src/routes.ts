@@ -1,7 +1,9 @@
 import express from "express";
 import { LowdbSync } from "lowdb";
 import { DatabaseSchemaGif } from "./DatabaseSchema";
-import { GifDTO } from "./GifDTO";
+import { buscadorGifs } from "./buscadorGifs";
+import { mapGifsToGifDTO } from "./mapGifsToGifDTO";
+import { hasSpecialCharacter } from "./hasSpecialCharacter";
 
 export const createRoutes = (db: LowdbSync<DatabaseSchemaGif>) => {
   var routes = express.Router();
@@ -36,62 +38,4 @@ export const createRoutes = (db: LowdbSync<DatabaseSchemaGif>) => {
   });
 
   return routes;
-};
-
-export const orderGifs = (myGifs: Array<GifDTO>) => {
-  myGifs.sort((gif1, gif2) => {
-    if (gif1.numberOfLikes > gif2.numberOfLikes) return -1;
-    if (gif1.numberOfLikes < gif2.numberOfLikes) return 1;
-    return 0;
-  });
-  return myGifs;
-};
-
-const hasSpecialCharacter = (text: String) => {
-  const characterCorrected = text.replace(/[^a-zA-Z0-9]/g, "");
-
-  return characterCorrected === text ? false : true;
-};
-
-export const buscadorGifs = (
-  nombreGif: String,
-  db: LowdbSync<DatabaseSchemaGif>
-) => {
-  console.log("PALABRA A BUSCAR: ", nombreGif);
-  const palabrasGif = nombreGif.split(" ");
-  let gifsEncontrados: Gif[] = [];
-  const primeraBusqueda = db
-    .get("gifs")
-    .value()
-    .filter((myGif) => {
-      return myGif.title.toLowerCase().includes(nombreGif.toLowerCase());
-    });
-
-  gifsEncontrados = gifsEncontrados.concat(primeraBusqueda);
-
-  palabrasGif.forEach((palabraABuscar) => {
-    if (palabraABuscar.length >= 3) {
-      gifsEncontrados.concat(
-        db
-          .get("gifs")
-          .value()
-          .filter((myGif) => {
-            return myGif.title
-              .toLocaleLowerCase()
-              .includes(palabraABuscar.toLocaleLowerCase());
-          })
-      );
-    }
-  });
-  return gifsEncontrados;
-};
-
-const mapGifsToGifDTO = (myGifs: Array<Gif>) => {
-  return myGifs.map((myGif, key) => {
-    return {
-      name: myGif.title,
-      src: myGif.images.small.url,
-      numberOfLikes: (key += 5),
-    };
-  });
 };

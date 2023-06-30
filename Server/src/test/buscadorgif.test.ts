@@ -1,4 +1,3 @@
-import { buscadorGifs, orderGifs } from "../routes";
 import { DatabaseSchemaGif } from "../DatabaseSchema";
 import Memory from "lowdb/adapters/Memory";
 import lowdb from "lowdb";
@@ -7,6 +6,7 @@ import { createApp } from "../app";
 import { Express } from "express";
 import { LowdbSync } from "lowdb";
 import { gifBuilder } from "./builders/gifBuilder";
+import { buscadorGifs } from "../buscadorGifs";
 
 describe("Testing search gif function", () => {
   let db: LowdbSync<DatabaseSchemaGif>;
