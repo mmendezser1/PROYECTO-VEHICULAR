@@ -10,18 +10,13 @@ export const createRoutes = (db: LowdbSync<DatabaseSchemaGif>) => {
     const gifs = db.get("gifs").take(20).value();
 
     res.json({
-      response: gifs.map((myGif, key) => {
-        return {
-          name: myGif.title,
-          src: myGif.images.small.url,
-          numberOfLikes: (key += 5),
-        };
-      }),
+      response: mapGifsToGifDTO(gifs),
     });
   });
 
   routes.post("/gifs/find", function (req, res) {
     const nombreGif = req.body.gif;
+
     const nombreGifToValidate = nombreGif.replaceAll(" ", "");
 
     const STRING_LENGTH_REQUIREMENT = nombreGifToValidate.length <= 4;
@@ -32,15 +27,9 @@ export const createRoutes = (db: LowdbSync<DatabaseSchemaGif>) => {
       res.json({ response: "string NO valido" });
     }
 
-    nombreGif;
-    // Buscart tal cual
-    // Dividir y buscar por palabras
-    // gatos que bailan breackdance
-    // Gatos
-    // bailan
-    // breakdance
+    let gifsBuscados = buscadorGifs(nombreGif, db);
 
-    res.json({ response: "string valido" });
+    res.json({ response: mapGifsToGifDTO(gifsBuscados) });
   });
 
   return routes;
@@ -57,6 +46,53 @@ export const orderGifs = (myGifs: Array<GifDTO>) => {
 
 const hasSpecialCharacter = (text: String) => {
   const characterCorrected = text.replace(/[^a-zA-Z0-9]/g, "");
-  console.log(text + " -- " + characterCorrected);
+
   return characterCorrected === text ? false : true;
+};
+
+export const buscadorGifs = (
+  nombreGif: String,
+  db: LowdbSync<DatabaseSchemaGif>
+) => {
+  console.log("PALABRA A BUSCAR: ", nombreGif);
+  const palabrasGif = nombreGif.split(" ");
+  console.log(palabrasGif);
+  let gifsEncontrados: Gif[] = [];
+
+  const primeraBusqueda = db
+    .get("gifs")
+    .value()
+    .filter((myGif) => {
+      return myGif.title
+        .toLocaleLowerCase()
+        .includes(nombreGif.toLocaleLowerCase());
+    });
+
+  gifsEncontrados = gifsEncontrados.concat(primeraBusqueda);
+
+  palabrasGif.forEach((palabraABuscar) => {
+    if (palabraABuscar.length >= 3) {
+      gifsEncontrados.concat(
+        db
+          .get("gifs")
+          .value()
+          .filter((myGif) => {
+            return myGif.title
+              .toLocaleLowerCase()
+              .includes(palabraABuscar.toLocaleLowerCase());
+          })
+      );
+    }
+  });
+  return gifsEncontrados;
+};
+
+const mapGifsToGifDTO = (myGifs: Array<Gif>) => {
+  return myGifs.map((myGif, key) => {
+    return {
+      name: myGif.title,
+      src: myGif.images.small.url,
+      numberOfLikes: (key += 5),
+    };
+  });
 };
