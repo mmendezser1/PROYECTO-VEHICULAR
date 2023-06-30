@@ -24,7 +24,10 @@ export const createRoutes = (db: LowdbSync<DatabaseSchemaGif>) => {
       hasSpecialCharacter(nombreGifToValidate);
 
     if (STRING_LENGTH_REQUIREMENT || STIRNG_HAS_SPECIAL_CHARACTER) {
-      res.json({ response: "string NO valido" });
+      res.status(400);
+      res.send(
+        "String no válido para búsqueda. No debe contener caracteres especiales y más de 4 caracteres"
+      );
     }
 
     let gifsBuscados = buscadorGifs(nombreGif, db);
@@ -56,16 +59,12 @@ export const buscadorGifs = (
 ) => {
   console.log("PALABRA A BUSCAR: ", nombreGif);
   const palabrasGif = nombreGif.split(" ");
-  console.log(palabrasGif);
   let gifsEncontrados: Gif[] = [];
-
   const primeraBusqueda = db
     .get("gifs")
     .value()
     .filter((myGif) => {
-      return myGif.title
-        .toLocaleLowerCase()
-        .includes(nombreGif.toLocaleLowerCase());
+      return myGif.title.toLowerCase().includes(nombreGif.toLowerCase());
     });
 
   gifsEncontrados = gifsEncontrados.concat(primeraBusqueda);

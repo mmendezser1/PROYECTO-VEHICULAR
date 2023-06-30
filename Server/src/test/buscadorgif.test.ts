@@ -18,15 +18,36 @@ describe("Testing search gif function", () => {
     db.defaults(dbData).write();
     app = createApp(db);
   });
-  it("Test searching by word MOODMAN", () => {
+  it("Test searching by word MOODMAN with expected response", () => {
     let buildGif = gifBuilder()
       .withTitle("Movie Brazil GIF by MOODMAN")
       .build();
-    const arrayGifs = { gifs: [buildGif] };
 
-    db.set("gifs", [buildGif]).write();
+    const arrayGifs = [buildGif];
+    db.set("gifs", arrayGifs).write();
 
     const result = buscadorGifs("MOODMAN", db);
     expect(result).toHaveLength(1);
+  });
+
+  it("Test searching by word MOODMAN with lowerCase", () => {
+    const buildGif = gifBuilder()
+      .withTitle("Movie Brazil GIF by MOODMAN")
+      .build();
+    const arrayGifs = [buildGif];
+    db.set("gifs", arrayGifs).write();
+    const result = buscadorGifs("moodman", db);
+    expect(result).toHaveLength(1);
+  });
+
+  it("Test searching by word and not expected results", () => {
+    const buildGif = gifBuilder()
+      .withTitle("Movie Brazil Gif by MOODMAN")
+      .build();
+    const arrayGifs = [buildGif];
+    db.set("gifs", arrayGifs).write();
+    const result = buscadorGifs("sdsadsda", db);
+
+    expect(result).toHaveLength(0);
   });
 });

@@ -36,7 +36,7 @@ describe("GET /api/gifs", function () {
   });
 
   it("Search is valid, has more than 5 characters", function (done) {
-    const apiContent = { gif: "porqueestarompiendo" };
+    const apiContent = { gif: "Palabra buscada" };
     request(app)
       .post("/api/gifs/find")
       .set("Accept", "application/json")
@@ -44,7 +44,6 @@ describe("GET /api/gifs", function () {
       .expect("Content-Type", /json/)
       .then((res) => {
         const response = res.body.response;
-        console.log(response);
         expect(Array.isArray(response)).toBe(true);
         done();
       });

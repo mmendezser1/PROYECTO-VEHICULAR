@@ -21,3 +21,10 @@ Propiedades:
 -> Número Likes
 -> Comentarios
 -> getRecomendaciones()
+
+SERVER
+HTTPS METHODS
+Si la llamada al método /gifs/find no es válida (Devolver un codeError 400)
+
+CLIENTE
+Si al realizar la búsqueda dew gifs. Obtenemos un 400. Mostrar un mensaje de error de validacion
