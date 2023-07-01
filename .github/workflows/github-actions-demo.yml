@@ -27,4 +27,7 @@ jobs:
       - name: Pass test
         run: npm test
 
+      - name: Build app
+        run: npm build
+
       - run: echo "🍏 This job's status is ${{ job.status }}."
