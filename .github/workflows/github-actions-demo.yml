@@ -6,10 +6,6 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: Client
-
     steps:
       - run: pwd
       - run: npm install
