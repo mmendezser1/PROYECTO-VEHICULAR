@@ -6,8 +6,12 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ./Client
+
     steps:
-      - run: pwd
+      - run: echo pwd
       - run: npm install
       - run: npm test
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
