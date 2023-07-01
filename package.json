@@ -4,5 +4,8 @@
   },
   "scripts": {
     "prepare": "husky install"
+  },
+  "dependencies": {
+    "firebase": "^9.23.0"
   }
 }

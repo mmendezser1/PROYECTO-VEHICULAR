@@ -30,4 +30,7 @@ jobs:
       - name: Build app
         run: CI= npm run build
 
+      - name: Deploy app
+        run: CI= npm run deploy
+
       - run: echo "🍏 This job's status is ${{ job.status }}."
