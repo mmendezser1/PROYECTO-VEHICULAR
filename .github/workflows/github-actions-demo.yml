@@ -16,6 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
+
         with:
           node-version: "16.x"
 
@@ -28,6 +29,11 @@ jobs:
         run: npm test
 
       - name: Build app
-        run: npm build
+        run: CI= npm run build
+
+      - name: Deploy to Firebase
+        uses: pocket-apps/action-setup-firebase@v2
+        with:
+          firebase-token: ${{ secrets.FIREBASE_TOKEN }}
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
