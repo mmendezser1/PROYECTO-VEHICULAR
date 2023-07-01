@@ -28,6 +28,6 @@ jobs:
         run: npm test
 
       - name: Build app
-        run: npm run-script build
+        run: CI= npm run build
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
