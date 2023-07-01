@@ -44,5 +44,8 @@
   },
   "msw": {
     "workerDirectory": "public"
+  },
+  "devDependencies": {
+    "lint-staged": "^13.2.3"
   }
 }

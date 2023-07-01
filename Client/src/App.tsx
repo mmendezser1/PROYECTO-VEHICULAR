@@ -44,7 +44,7 @@ function App() {
         </section>
         <section className="container-gifs-header"></section>
         <section className="container-gifs">
-          <p>los princiales Gifs</p>
+          <p>LOS princiales Gifs</p>
           <div className="list-gifs">
             {gifs.map((gif) => {
               return <ComponentGif {...gif} />;
