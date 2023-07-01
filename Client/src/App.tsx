@@ -46,8 +46,8 @@ function App() {
         <section className="container-gifs">
           <h2>los princiales Gifs</h2>
           <ol className="list-gifs">
-            {gifs.map((gif) => {
-              return <ComponentGif {...gif} />;
+            {gifs.map((gif, i) => {
+              return <ComponentGif key={i} {...gif} />;
             })}
           </ol>
         </section>
