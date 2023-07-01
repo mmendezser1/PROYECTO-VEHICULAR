@@ -34,8 +34,6 @@ jobs:
       - name: Deploy to Firebase
         uses: pocket-apps/action-setup-firebase@v2
         with:
-          args: deploy --only hosting
-        env:
           firebase-token: ${{ secrets.FIREBASE_TOKEN }}
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
