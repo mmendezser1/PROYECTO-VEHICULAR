@@ -59,4 +59,32 @@ describe("Testing search gif function", () => {
     const result = buscadorGifs("shrek", db);
     expect(result).toHaveLength(3);
   });
+  it("Test searching by phrase and get many results", () => {
+    const buildGifPiratas1 = gifBuilder()
+      .withTitle("Piratas del Caribe: La maldición del Perla Negra (2003)")
+      .build();
+    const buildGifPiratas2 = gifBuilder()
+      .withTitle("Piratas del Caribe: El cofre del hombre muerto (2006)")
+      .build();
+    const buildGifPiratas3 = gifBuilder()
+      .withTitle("Piratas del Caribe: En el fin del mundo (2007)")
+      .build();
+    const buildGifPiratas4 = gifBuilder()
+      .withTitle("Piratas del Caribe: En mareas misteriosas (2011)")
+      .build();
+    const buildGifPiratas5 = gifBuilder()
+      .withTitle("Piratas del Caribe 5: La venganza de Salazar (2017)")
+      .build();
+
+    const arrayPiratasGifs = [
+      buildGifPiratas1,
+      buildGifPiratas2,
+      buildGifPiratas3,
+      buildGifPiratas4,
+      buildGifPiratas5,
+    ];
+    db.set("gifs", arrayPiratasGifs).write();
+    const result = buscadorGifs("piratas del cariBe", db);
+    expect(result).toHaveLength(5);
+  });
 });
