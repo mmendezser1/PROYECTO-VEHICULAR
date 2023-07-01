@@ -30,14 +30,14 @@ jobs:
       - name: Build app
         run: CI= npm run build
 
-      - name: Deploy app
-        run: CI= npm run deploy
-
       - name: Deploy to Firebase
         uses: mmendezser1/PROYECTO-VEHICULAR@develop
         with:
           args: deploy --only hosting
         env:
-          FIREBASE_TOKEN: 1//03nNKElDTUjEuCgYIARAAGAMSNwF-L9IrDiOYcG--F9IZd9uJGDCc7BtU0ld6_6G9U3JXWdj8dugkcG7XwwWSj6P_emXa1lhngjQ
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+      - name: Deploy App
+        run: CI= npm run deploy
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
