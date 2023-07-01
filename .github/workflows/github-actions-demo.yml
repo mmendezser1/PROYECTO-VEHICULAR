@@ -3,9 +3,9 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
   Explore-GitHub-Actions:
+    working-directory: ./Client
     runs-on: ubuntu-latest
     steps:
-      - working-directory: ./Client
       - run: npm test
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
