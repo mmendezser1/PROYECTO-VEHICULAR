@@ -8,12 +8,16 @@ function App() {
 
   useEffect(() => {
     const loadGift = async () => {
-      const response = await fetch(URL_API, {
-        method: "GET",
-      });
-      const res = await response.json();
+      try {
+        const response = await fetch(URL_API, {
+          method: "GET",
+        });
+        const res = await response.json();
 
-      setGifs(res.response);
+        setGifs(res.response);
+      } catch (error) {
+        setGifs([]);
+      }
     };
 
     loadGift();
