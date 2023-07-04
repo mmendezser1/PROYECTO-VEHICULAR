@@ -87,4 +87,22 @@ describe("Testing search gif function", () => {
     const result = buscadorGifs("piratas del cariBe", db);
     expect(result).toHaveLength(5);
   });
+  it("Test searching by phrase and get results by word", () => {
+    const buildGifPiratasCaribe1 = gifBuilder()
+      .withTitle("Piratas del Caribe: En el fin del mundo")
+      .build();
+    const buildGifPiratasAbordaje = gifBuilder()
+      .withTitle("Piratas al abordaje")
+      .build();
+    const buildGifCaribe = gifBuilder().withTitle("Jorge en el caribe").build();
+
+    const arrayGifs = [
+      buildGifPiratasCaribe1,
+      buildGifPiratasAbordaje,
+      buildGifCaribe,
+    ];
+    db.set("gifs", arrayGifs).write();
+    const result = buscadorGifs("piratas del caribe", db);
+    expect(result).toHaveLength(3);
+  });
 });

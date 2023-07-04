@@ -5,7 +5,6 @@ export const buscadorGifs = (
   nombreGif: String,
   db: LowdbSync<DatabaseSchemaGif>
 ) => {
-  console.log("PALABRA A BUSCAR: ", nombreGif);
   const palabrasGif = nombreGif.split(" ");
   let gifsEncontrados: Gif[] = [];
   const primeraBusqueda = db
@@ -19,17 +18,17 @@ export const buscadorGifs = (
 
   palabrasGif.forEach((palabraABuscar) => {
     if (palabraABuscar.length >= 3) {
-      gifsEncontrados.concat(
+      gifsEncontrados = gifsEncontrados.concat(
         db
           .get("gifs")
           .value()
           .filter((myGif) => {
             return myGif.title
-              .toLocaleLowerCase()
-              .includes(palabraABuscar.toLocaleLowerCase());
+              .toLowerCase()
+              .includes(palabraABuscar.toLowerCase());
           })
       );
     }
   });
-  return gifsEncontrados;
+  return [...new Set(gifsEncontrados)];
 };
