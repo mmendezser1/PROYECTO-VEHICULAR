@@ -1,6 +1,6 @@
 import { Gif } from "../../Models/Gif";
 import "./Gif.css";
-export const ComponentGif = (myGif: Gif) => {
+export const ComponentGif = ({ myGif }: { myGif: Gif }) => {
   return (
     <li>
       <img
