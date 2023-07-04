@@ -5,6 +5,7 @@ import { ComponentGif } from "./Components/Gif/Gif";
 const URL_API = "http://localhost:3005/api/gifs";
 function App() {
   const [gifs, setGifs] = useState<Gif[] | undefined>(undefined);
+  const [errorMessage, seterrorMessage] = useState("loading...");
 
   useEffect(() => {
     const loadGift = async () => {
@@ -15,46 +16,72 @@ function App() {
         const res = await response.json();
 
         setGifs(res.response);
+        seterrorMessage("");
       } catch (error) {
-        setGifs([]);
+        setGifs(undefined);
+        seterrorMessage("Hubo un problema con el servidor..."); //TODO habra que mostrar en la pantalla un error, no un mensaje de que no se han encontrado gifs
       }
     };
 
     loadGift();
   }, []);
-  if (gifs === undefined) {
-    return <p>loading...</p>;
+
+  if (gifs !== undefined && gifs.length === 0) {
+    seterrorMessage("No se han encontrado gifs... "); //TODO Hacer que se muestre centrado y con tipografía adecuada
   }
-  if (gifs.length === 0) {
-    return <p>No hay ningún gif disponible...</p>;
-  }
+
+  const ComponentHeader = () => {
+    return (
+      <header className="header">
+        <img className="image-header" src="/images/Logo.svg" alt="Logo" />
+        <h1 className="title-h1">GUIFAFFINITY</h1>
+      </header>
+    );
+  };
+  const ComponentBrowser = () => {
+    return (
+      <section className="browserBox">
+        <input
+          className="browserInput"
+          type="text"
+          placeholder="¿Que quieres buscar? ¡Encuentralo!"
+        />
+        <button className="browserImage">
+          <img src="/images/lupa.svg" alt="lupa" />
+        </button>
+      </section>
+    );
+  };
+
+  const ComponentAllGifs = ({
+    msjError,
+    myGifs,
+  }: {
+    myGifs: Gif[] | undefined;
+    msjError: string;
+  }) => {
+    if (myGifs !== undefined) {
+      return (
+        <section className="container-gifs">
+          <h2 className="">los princiales Gifs</h2>
+          <ol className="list-gifs">
+            {myGifs.map((gif) => {
+              return <ComponentGif myGif={gif} />;
+            })}
+          </ol>
+        </section>
+      );
+    } else {
+      return <p>{msjError} </p>;
+    }
+  };
 
   return (
     <div className="App">
       <div className="home">
-        <header className="header">
-          <img className="image-header" src="/images/Logo.svg" alt="Logo" />
-          <h1 className="title-h1">GUIFAFFINITY</h1>
-        </header>
-        <section className="browserBox">
-          <input
-            className="browserInput"
-            type="text"
-            placeholder="¿Que quieres buscar? ¡Encuentralo!"
-          />
-          <button className="browserImage">
-            <img src="/images/lupa.svg" alt="lupa" />
-          </button>
-        </section>
-        <section className="container-gifs-header"></section>
-        <section className="container-gifs">
-          <h2>los princiales Gifs</h2>
-          <ol className="list-gifs">
-            {gifs.map((gif, i) => {
-              return <ComponentGif key={i} {...gif} />;
-            })}
-          </ol>
-        </section>
+        <ComponentHeader />
+        <ComponentBrowser />
+        <ComponentAllGifs myGifs={gifs} msjError={errorMessage} />
       </div>
     </div>
   );
